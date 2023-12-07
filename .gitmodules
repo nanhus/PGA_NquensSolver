@@ -1,0 +1,3 @@
+[submodule "nqueens-web"]
+	path = nqueens-web
+	url = https://github.com/nanhus/PGA_NquensSolver.git
