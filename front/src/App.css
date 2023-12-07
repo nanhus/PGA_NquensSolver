@@ -1,0 +1,41 @@
+.App {
+    text-align: center;
+    margin-top: 0px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.square {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    font-size: 50px;
+}
+
+.red-queen {
+    color: red;
+    font-weight: bold;
+}
+
+input {
+    margin-left: 20px;
+}
+
