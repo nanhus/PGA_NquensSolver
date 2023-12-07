@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import parse from 'html-react-parser'
+import parse from 'html-react-parser';
 import './App.css';
 
 const Chessboard = ({ queens }) => {
