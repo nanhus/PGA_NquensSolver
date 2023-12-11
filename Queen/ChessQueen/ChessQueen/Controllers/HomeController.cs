@@ -13,7 +13,7 @@ namespace ChessQueen.Controllers
         static int N;
         public JsonResult Index(int num = 9)
         {
-           
+
             try
             {
                 N = Convert.ToInt32(num);
@@ -31,7 +31,7 @@ namespace ChessQueen.Controllers
             var stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
             bool isBoardSolved = true;
-            if (N <= 25 )
+            if (N <= 25)
             {
                 isBoardSolved = theBoardSolver(board, 0);
             }
@@ -40,7 +40,7 @@ namespace ChessQueen.Controllers
             var elapsedTicks = stopwatch.ElapsedTicks;
             var elapsedMs = (double)elapsedTicks / System.Diagnostics.Stopwatch.Frequency * 1000;
 
-            int populationSize = 100;
+            int populationSize = 50;
             double crossoverProbability = 0.8;
             double mutationProbability = 0.03;
             int maxGenerations = 1000;
@@ -111,7 +111,7 @@ namespace ChessQueen.Controllers
             // Tính toán kích thước cho quân Hậu dựa trên kích thước của ô vuông
             int queenSize = size; // Kích thước của quân Hậu, có thể điều chỉnh tùy ý
 
-            return $"<div class='square {queenClassName}' style='width: {size-2}px; height: {size-2}px; background-color: {squareColor}; text-align: center;'>" +
+            return $"<div class='square {queenClassName}' style='width: {size - 2}px; height: {size - 2}px; background-color: {squareColor}; text-align: center;'>" +
                    $"<div style='width: {queenSize}px; height: {queenSize}px; margin: auto; line-height: {queenSize}px;font-size: {queenSize * 0.6}px;'>{ (isQueen == 1 ? '♕' : ' ') }</div></div>";
         }
 

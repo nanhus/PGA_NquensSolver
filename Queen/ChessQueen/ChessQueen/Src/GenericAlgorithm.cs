@@ -16,6 +16,7 @@ namespace ChessQueen.Src
         private int NumParallelTasks; // Số lượng nhiệm vụ song song
         private Random random;
 
+        
         public GenericAlgorithm(int n, int populationSize, double crossoverProbability, double mutationProbability, int maxGenerations, int numParallelTasks)
         {
             N = n;
@@ -35,6 +36,7 @@ namespace ChessQueen.Src
             });
         }
 
+        // Thực hiện thuật toán di truyền song song chính để giải quyết vấn đề N-Queens.
         private void SolveNQueensParallelGA()
         {
             int[][] population = InitializePopulation();
@@ -60,6 +62,7 @@ namespace ChessQueen.Src
             });
         }
 
+        // Tạo và khởi tạo quần thể các cá thể.
         private int[][] InitializePopulation()
         {
             int[][] population = new int[PopulationSize][];
@@ -70,6 +73,7 @@ namespace ChessQueen.Src
             return population;
         }
 
+        // Tạo một cá thể ngẫu nhiên.
         private int[] GenerateRandomIndividual()
         {
             int[] individual = new int[N];
@@ -80,6 +84,7 @@ namespace ChessQueen.Src
             return individual;
         }
 
+        // Chọn một cha mẹ dựa trên sức khỏe để lai ghép.
         private int[] SelectParent(int[][] population)
         {
             int index1 = random.Next(population.Length);
@@ -87,6 +92,7 @@ namespace ChessQueen.Src
             return Fitness(population[index1]) < Fitness(population[index2]) ? population[index1] : population[index2];
         }
 
+        // Đánh giá sức khỏe của một cá thể (số xung đột).
         private int Fitness(int[] individual)
         {
             int conflicts = 0;
@@ -103,6 +109,7 @@ namespace ChessQueen.Src
             return conflicts;
         }
 
+        // Thực hiện lai ghép giữa hai cha mẹ để tạo ra một cá thể con.
         private int[] Crossover(int[] parent1, int[] parent2)
         {
             int[] child = new int[N];
@@ -118,6 +125,7 @@ namespace ChessQueen.Src
             return child;
         }
 
+        // Áp dụng đột biến cho một cá thể.
         private void Mutate(int[] individual)
         {
             int mutationPoint = random.Next(N);
@@ -125,6 +133,7 @@ namespace ChessQueen.Src
             individual[mutationPoint] = mutationValue;
         }
 
+        // Kiểm tra xem một giải pháp đã được tìm thấy trong quần thể hay chưa
         private bool IsSolutionFound(int[][] population)
         {
             foreach (var individual in population)
@@ -137,6 +146,7 @@ namespace ChessQueen.Src
             return false;
         }
 
+        // Trả về cá thể tốt nhất từ quần thể dựa trên sức khỏe
         private int[] GetBestIndividual(int[][] population)
         {
             int[] bestIndividual = population[0];
@@ -166,7 +176,7 @@ namespace ChessQueen.Src
             {
                 for (int col = 0; col < N; col++)
                 {
-                    result.AppendLine(RenderSquare(col, row, board[row], squareSize));
+                    result.AppendLine(RenderSquare(col, row, squareSize));
                 }
             }
 
@@ -175,16 +185,16 @@ namespace ChessQueen.Src
             return result.ToString();
         }
 
-        string RenderSquare(int col, int row, int isQueen, int size)
+        string RenderSquare(int col, int row, int size)
         {
             string squareColor = (row + col) % 2 == 0 ? "white" : "black";
-            string queenClassName = isQueen == 1 ? "red-queen" : "";
+            string queenClassName = row == col ? "red-queen" : "";
 
             // Tính toán kích thước cho quân Hậu dựa trên kích thước của ô vuông
             int queenSize = size; // Kích thước của quân Hậu, có thể điều chỉnh tùy ý
             
             return $"<div class='square {queenClassName}' style='width: {size - 2}px; height: {size - 2}px; background-color: {squareColor}; text-align: center;'>" +
-                   $"<div style='width: {queenSize}px; height: {queenSize}px; margin: auto; line-height: {queenSize}px;font-size: {queenSize * 0.6}px;'>{ (isQueen == 1 ? '♕' : ' ') }</div></div>";
+                   $"<div style='width: {queenSize}px; height: {queenSize}px; margin: auto; line-height: {queenSize}px;font-size: {queenSize * 0.6}px;'>{ (row == col ? '♕' : ' ') }</div></div>";
         }
     }
 }
